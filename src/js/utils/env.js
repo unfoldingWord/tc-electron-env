@@ -35,9 +35,20 @@ try {
 }
 
 if (!isElectronEnv) { // TRICKY: need this additional check for running unit tests in main app
-  console.warn(`env: electron not defined, falling back to empty environment`);
+  console.warn(`env: electron not defined, falling back to unit test environment`);
   processEnv = process && process.env || {};
-  appObject = { };
+  appObject = {
+    getPath: (path) => {
+      switch (path) {
+        case 'home':
+          return '/Users/jest/mock/path';
+        case 'appData':
+          return '/Users/jest/mock/path/appData';
+        default:
+          return 'unknown';
+      }
+    },
+  };
 }
 
 /**

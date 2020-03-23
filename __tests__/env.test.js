@@ -3,38 +3,26 @@ import * as env from "../src/js/utils/env";
 describe("env", () => {
   it('env.home() should fail', () => {
     // given
-    const expectToSucceed = false;
+    const expectedResults = '/Users/jest/mock/path';
     let results = null;
 
     // when
-    try {
-      // eslint-disable-next-line no-unused-vars
-      const path = env.home();
-      results = true;
-    } catch (e) {
-      results = false;
-    }
+    results = env.home();
 
     // then
-    expect(results).toEqual(expectToSucceed);
+    expect(results).toEqual(expectedResults);
   });
 
   it('env.data() should fail', () => {
     // given
-    const expectToSucceed = false;
+    const expectedResults = '/Users/jest/mock/path/appData';
     let results = null;
 
     // when
-    try {
-      // eslint-disable-next-line no-unused-vars
-      const path = env.home();
-      results = true;
-    } catch (e) {
-      results = false;
-    }
+    results = env.data();
 
     // then
-    expect(results).toEqual(expectToSucceed);
+    expect(results).toEqual(expectedResults);
   });
 
   it('env.getEnv() should be empty', () => {
