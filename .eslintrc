@@ -1,0 +1,53 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "plugins": [
+    "jest"
+  ],
+  "settings": {},
+  "rules": {
+    "no-duplicate-imports": [
+      "error",
+      {
+        "includeExports": false
+      }
+    ],
+    "no-throw-literal": "off",
+    "arrow-parens": "off",
+    "comma-dangle": "off",
+    "quotes": "off",
+    "indent": ["warn", 2,
+      {
+        "CallExpression": {"arguments": "first"},
+        "FunctionDeclaration": {"parameters": "first"},
+        "SwitchCase": 1,
+        "ignoreComments": true
+      }
+    ],
+    "semi": [
+      "error",
+      "always",
+      {
+        "omitLastInOneLineBlock": true
+      }
+    ],
+    "no-console": "off",
+    "max-len": 0
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest/globals": true
+  }
+}
