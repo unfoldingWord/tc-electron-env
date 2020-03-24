@@ -10,22 +10,9 @@ try {
   const electron = require('electron');
   isElectronEnv = !!(electron && (electron.remote || electron.app));
 
-  // TODO: remove
-  if (!electron) {
-    console.warn('env: electron not defined');
-  }
-
-  if (!electron.remote) {
-    console.warn('env: electron.remote not defined');
-  }
-
-  if (!electron.app) {
-    console.warn('env: electron.app not defined');
-  }
-
   if (isElectronEnv) {
     const isRunningClientSide = electron.remote && !!window; // if we are a render process and we have a window
-    console.warn(`env: isRunningClientSide = ${isRunningClientSide}`);
+    // console.log(`env: isRunningClientSide = ${isRunningClientSide}`);
     processEnv = isRunningClientSide ? electron.remote.process.env : process.env;
     appObject = isRunningClientSide ? electron.remote.app : electron.app;
   }
@@ -55,33 +42,33 @@ if (!isElectronEnv) { // TRICKY: need this additional check for running unit tes
  * get path to Home folder
  * @return {string}
  */
-function home() {
+const home = () => {
   return appObject.getPath('home');
-}
+};
 
 /**
  * get path to Home folder
  * @return {string}
  */
-function data() {
+const data = () => {
   return appObject.getPath('appData');
-}
+};
 
 /**
  * get Build number
  * @return {string}
  */
-function getBuild() {
+const getBuild = () => {
   return processEnv.BUILD;
-}
+};
 
 /**
  * return appropriate process.env data
  * @return {*}
  */
-function getEnv() {
+const getEnv = () => {
   return processEnv;
-}
+};
 
 const env = {
   data,
