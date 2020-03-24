@@ -27,12 +27,12 @@ if (!isElectronEnv) { // TRICKY: need this additional check for running unit tes
   appObject = {
     getPath: (path) => {
       switch (path) {
-        case 'home':
-          return '/Users/jest/mock/path';
-        case 'appData':
-          return '/Users/jest/mock/path/appData';
-        default:
-          return 'unknown';
+      case 'home':
+        return '/Users/jest/mock/path';
+      case 'appData':
+        return '/Users/jest/mock/path/appData';
+      default:
+        return 'unknown';
       }
     },
   };
@@ -42,33 +42,25 @@ if (!isElectronEnv) { // TRICKY: need this additional check for running unit tes
  * get path to Home folder
  * @return {string}
  */
-const home = () => {
-  return appObject.getPath('home');
-};
+const home = () => (appObject.getPath('home'));
 
 /**
  * get path to Home folder
  * @return {string}
  */
-const data = () => {
-  return appObject.getPath('appData');
-};
+const data = () => (appObject.getPath('appData'));
 
 /**
  * get Build number
  * @return {string}
  */
-const getBuild = () => {
-  return processEnv.BUILD;
-};
+const getBuild = () => (processEnv.BUILD);
 
 /**
  * return appropriate process.env data
  * @return {*}
  */
-const getEnv = () => {
-  return processEnv;
-};
+const getEnv = () => (processEnv);
 
 const env = {
   data,
