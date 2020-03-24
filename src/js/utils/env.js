@@ -22,7 +22,7 @@ try {
 }
 
 if (!isElectronEnv) { // TRICKY: need this additional check for running unit tests in main app
-  console.warn(`env: electron not defined, falling back to unit test environment`);
+  console.warn(`env: electron environment is not defined, falling back to unit test environment`);
   processEnv = process && process.env || {};
   appObject = {
     getPath: (path) => {
