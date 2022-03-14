@@ -6,41 +6,37 @@ let isElectronEnv = false;
 let processEnv = null;
 let appObject = null;
 
-function initialize() {
-  try {
-    const electron = require('electron');
-    isElectronEnv = !!(electron && (electron.remote || electron.app));
+try {
+  const electron = require('electron');
+  isElectronEnv = !!(electron && (electron.remote || electron.app));
 
-    if (isElectronEnv) {
-      const isRunningClientSide = electron.remote && !!window; // if we are a render process and we have a window
-      // console.log(`env: isRunningClientSide = ${isRunningClientSide}`);
-      processEnv = isRunningClientSide ? electron.remote.process.env : process.env;
-      appObject = isRunningClientSide ? electron.remote.app : electron.app;
-    }
-  } catch (e) { // fallback for unit testing this module
-    console.warn(`env: electron module not loaded, falling back to unit test environment`);
-    isElectronEnv = false;
+  if (isElectronEnv) {
+    const isRunningClientSide = electron.remote && !!window; // if we are a render process and we have a window
+    // console.log(`env: isRunningClientSide = ${isRunningClientSide}`);
+    processEnv = isRunningClientSide ? electron.remote.process.env : process.env;
+    appObject = isRunningClientSide ? electron.remote.app : electron.app;
   }
-
-  if (!isElectronEnv) { // TRICKY: need this additional check for running unit tests in main app
-    console.warn(`env: electron environment is not defined, falling back to unit test environment`);
-    processEnv = process && process.env || {};
-    appObject = {
-      getPath: (path) => {
-        switch (path) {
-        case 'home':
-          return '/Users/jest/mock/path';
-        case 'appData':
-          return '/Users/jest/mock/path/appData';
-        default:
-          return 'unknown';
-        }
-      },
-    };
-  }
+} catch (e) { // fallback for unit testing this module
+  console.warn(`env: electron module not loaded, falling back to unit test environment`);
+  isElectronEnv = false;
 }
 
-initialize();
+if (!isElectronEnv) { // TRICKY: need this additional check for running unit tests in main app
+  console.warn(`env: electron environment is not defined, falling back to unit test environment`);
+  processEnv = process && process.env || {};
+  appObject = {
+    getPath: (path) => {
+      switch (path) {
+      case 'home':
+        return '/Users/jest/mock/path';
+      case 'appData':
+        return '/Users/jest/mock/path/appData';
+      default:
+        return 'unknown';
+      }
+    },
+  };
+}
 
 /**
  * get path to Home folder
@@ -66,12 +62,29 @@ const getBuild = () => (processEnv.BUILD);
  */
 const getEnv = () => (processEnv);
 
+/**
+ * apply new env
+ * @param env
+ */
+const setEnv = (env) => {
+  processEnv = env;
+};
+
+/**
+ * apply new app
+ * @param app
+ */
+const setApp = (app) => {
+  appObject = app;
+};
+
 const env = {
   data,
   getEnv,
   getBuild,
   home,
-  initialize,
+  setEnv,
+  setApp,
 };
 
 module.exports = env;
