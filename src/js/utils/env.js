@@ -94,6 +94,7 @@ const env = {
   setEnv,
   setApp,
   isElectronEnv,
+  setElectronEnv,
 };
 
 module.exports = env;
