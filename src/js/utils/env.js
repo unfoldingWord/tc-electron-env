@@ -62,11 +62,44 @@ const getBuild = () => (processEnv.BUILD);
  */
 const getEnv = () => (processEnv);
 
+/**
+ * apply new env
+ * @param env
+ */
+const setEnv = (env) => {
+  processEnv = env;
+};
+
+/**
+ * apply new app
+ * @param app
+ */
+const setApp = (app) => {
+  appObject = app;
+};
+
+/**
+ * set that we are running in electron
+ * @param isElectron
+ */
+const setElectron = (isElectron) => {
+  isElectronEnv = isElectron;
+};
+
+/**
+ * see if we are running in electron
+ */
+const isElectron = () => (isElectronEnv);
+
 const env = {
   data,
   getEnv,
   getBuild,
   home,
+  setEnv,
+  setApp,
+  isElectron,
+  setElectron,
 };
 
 module.exports = env;
