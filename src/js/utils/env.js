@@ -83,13 +83,13 @@ const setApp = (app) => {
  * @param isElectron
  */
 const setElectron = (isElectron) => {
-  isElectronEnv = isElectron;
+  isElectronEnv = !!isElectron;
 };
 
 /**
  * see if we are running in electron
  */
-const isElectron = () => (isElectronEnv);
+const isElectron = () => (!!isElectronEnv);
 
 const env = {
   data,

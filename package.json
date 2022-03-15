@@ -1,6 +1,6 @@
 {
   "name": "tc-electron-env",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "A library for accessing electron environment",
   "main": "lib/index.js",
   "scripts": {
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/unfoldingWord/tc-electron-env#readme",
   "peerDependencies": {
-    "electron": "6.x"
+    "electron": "14.x"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
