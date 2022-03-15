@@ -82,9 +82,14 @@ const setApp = (app) => {
  * set that we are running in electron
  * @param isElectron
  */
-const setElectronEnv = (isElectron) => {
+const setElectron = (isElectron) => {
   isElectronEnv = isElectron;
 };
+
+/**
+ * see if we are running in electron
+ */
+const isElectron = () => (isElectronEnv);
 
 const env = {
   data,
@@ -93,8 +98,8 @@ const env = {
   home,
   setEnv,
   setApp,
-  isElectronEnv,
-  setElectronEnv,
+  isElectron,
+  setElectron,
 };
 
 module.exports = env;
